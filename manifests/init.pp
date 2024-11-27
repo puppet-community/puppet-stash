@@ -81,10 +81,10 @@ class stash (
 ) inherits stash::params {
   Exec { path => ['/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/'] }
 
-  if $::stash_version {
+  if $facts['stash_version'] {
     # If the running version of stash is less than the expected version of stash
     # Shut it down in preparation for upgrade.
-    if versioncmp($version, $::stash_version) > 0 {
+    if versioncmp($version, $facts['stash_version']) > 0 {
       notify { 'Attempting to upgrade stash': }
       exec { $stop_stash: }
       if versioncmp($version, '3.2.0') > 0 {
