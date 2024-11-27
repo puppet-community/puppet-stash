@@ -1,4 +1,4 @@
-require 'spec_helper.rb'
+require 'spec_helper'
 
 describe 'stash' do
   describe 'stash::backup' do
@@ -38,6 +38,7 @@ describe 'stash' do
                      'owner'  => 'stash',
                      'group'  => 'stash')
             end
+
             it 'manages the backup cron job' do
               is_expected.to contain_cron('Backup Stash').
                 with('ensure'  => 'present',
@@ -46,6 +47,7 @@ describe 'stash' do
                      'hour'    => '5',
                      'minute'  => '0')
             end
+
             it 'removes old archives' do
               is_expected.to contain_tidy('remove_old_archives').
                 with('path'    => '/opt/stash-backup/archives',

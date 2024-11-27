@@ -13,6 +13,7 @@ describe 'stash' do
             is_expected.to raise_error(Puppet::Error, %r{You need to specify a value for javahome})
           end
         end
+
         context 'with javahome set' do
           let(:params) do
             { javahome: '/opt/java' }
@@ -31,6 +32,7 @@ describe 'stash' do
       end
     end
   end
+
   context 'unsupported operating system' do
     describe 'test class without any parameters on Solaris/Nexenta' do
       let(:facts) do

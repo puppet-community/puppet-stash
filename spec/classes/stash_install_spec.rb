@@ -51,6 +51,7 @@ describe 'stash' do
               it { is_expected.to contain_user('stash').with_shell('/bin/bash') }
               it { is_expected.to contain_group('stash') }
             end
+
             context 'when a user and group is specified' do
               let(:params) do
                 {
@@ -111,10 +112,12 @@ describe 'stash' do
             it do
               is_expected.to contain_user('foo').with('home' => '/random/homedir',
                                                       'shell' => '/bin/bash',
-                                                      'uid'   => 333,
-                                                      'gid'   => 444)
+                                                      'uid' => 333,
+                                                      'gid' => 444)
             end
+
             it { is_expected.to contain_group('bar') }
+
             it 'manages the stash home directory' do
               is_expected.to contain_file('/random/homedir').with('ensure' => 'directory',
                                                                   'owner' => 'foo',

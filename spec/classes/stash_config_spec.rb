@@ -21,7 +21,9 @@ describe 'stash' do
             it do
               is_expected.not_to contain_file('/opt/stash/atlassian-bitbucket-6.8.1/bin/setenv.sh')
             end
+
             it { is_expected.not_to contain_file('/opt/stash/atlassian-bitbucket-6.8.1/bin/user.sh') }
+
             it do
               is_expected.not_to contain_file('/opt/stash/atlassian-bitbucket-6.8.1/conf/server.xml')
             end
@@ -52,7 +54,9 @@ describe 'stash' do
                 with_content(%r{^STASH_MAX_PERM_SIZE=256m}).
                 with_content(%r{JAVA_OPTS="})
             end
+
             it { is_expected.to contain_file('/opt/stash/atlassian-stash-3.8.1/bin/user.sh') }
+
             it do
               is_expected.to contain_file('/home/stash/shared/server.xml').
                 with_content(%r{<Connector port="7990"}).
@@ -115,7 +119,7 @@ describe 'stash' do
             end
           end
 
-          context 'proxy settings ' do
+          context 'proxy settings' do
             let(:params) do
               {
                 version: '3.7.0',
@@ -131,9 +135,9 @@ describe 'stash' do
 
             it do
               is_expected.to contain_file('/opt/stash/atlassian-stash-3.7.0/conf/server.xml'). \
-                with_content(%r{proxyName = \'stash\.example\.co\.za\'}).
-                with_content(%r{proxyPort = \'443\'}).
-                with_content(%r{scheme = \'https\'})
+                with_content(%r{proxyName = 'stash\.example\.co\.za'}).
+                with_content(%r{proxyPort = '443'}).
+                with_content(%r{scheme = 'https'})
             end
           end
 

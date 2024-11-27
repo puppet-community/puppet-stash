@@ -4,11 +4,7 @@ require 'spec_helper_acceptance'
 # Set environment variable download_url to use local webserver
 # export download_url = 'http://10.0.0.XXX/'
 download_url = ENV['download_url'] if ENV['download_url']
-download_url = if ENV['download_url']
-                 ENV['download_url']
-               else
-                 'undef'
-               end
+download_url = ENV['download_url'] || 'undef'
 java_url = if download_url == 'undef'
              'http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz'
            else
@@ -61,7 +57,7 @@ describe 'stash' do
         backupclient_url => #{download_url},
       }
       include ::stash::facts
-  EOS
+    EOS
     apply_manifest(pp, catch_failures: true)
     sleep 180
     shell 'wget -q --tries=20 --retry-connrefused --read-timeout=10 localhost:7990/stash1'
