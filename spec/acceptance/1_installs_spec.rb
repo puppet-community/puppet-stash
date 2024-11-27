@@ -60,7 +60,7 @@ describe 'stash' do
         context_path     => '/stash1',
         backupclient_url => #{download_url},
       }
-      include ::stash::facts
+      include stash::facts
   EOS
     apply_manifest(pp, catch_failures: true)
     sleep 180

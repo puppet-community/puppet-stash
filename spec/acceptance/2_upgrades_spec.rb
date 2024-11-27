@@ -29,7 +29,7 @@ describe 'stash' do
         javahome      => $jh,
         context_path  => '/stash1',
       }
-      include ::stash::facts
+      include stash::facts
     EOS
     apply_manifest(pp_update, catch_failures: true)
     shell 'wget -q --tries=20 --retry-connrefused --read-timeout=10 localhost:7990/stash1'

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'stash::facts', type: :class do
   context 'supported operating systems' do
-    let(:pre_condition) { "class{'::stash': javahome => '/opt/java', }" }
+    let(:pre_condition) { "class{'stash': javahome => '/opt/java', }" }
 
     on_supported_os.each do |os, facts|
       context "on #{os} #{facts}" do
